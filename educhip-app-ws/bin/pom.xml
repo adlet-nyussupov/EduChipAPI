@@ -11,7 +11,6 @@
 	</parent>
 	<groupId>com.moniumverse.app.ws</groupId>
 	<artifactId>educhip-app-ws</artifactId>
-	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>educhip-app-ws</name>
 	<description>API for EduChip mobile application</description>
