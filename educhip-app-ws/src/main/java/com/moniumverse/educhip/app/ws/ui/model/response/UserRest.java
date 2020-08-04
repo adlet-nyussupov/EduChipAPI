@@ -3,7 +3,6 @@ package com.moniumverse.educhip.app.ws.ui.model.response;
 public class UserRest {
 	
 	private String userId;
-	private String login;
 	private String password;
 	private String email;
 	private String firstName;
@@ -19,12 +18,6 @@ public class UserRest {
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
-	}
-	public String getLogin() {
-		return login;
-	}
-	public void setLogin(String login) {
-		this.login = login;
 	}
 	public String getPassword() {
 		return password;

@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping
 public class UserDetailsRequestModel {
 	
-	private String login;
 	private String password;
 	private String email;
 	private String firstName;
@@ -17,12 +16,6 @@ public class UserDetailsRequestModel {
 	private String whereToStudy;
 	
 	
-	public String getLogin() {
-		return login;
-	}
-	public void setLogin(String login) {
-		this.login = login;
-	}
 	public String getPassword() {
 		return password;
 	}

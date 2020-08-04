@@ -19,6 +19,8 @@ import com.moniumverse.educhip.app.ws.service.UserService;
 import com.moniumverse.educhip.app.ws.shared.Utils;
 import com.moniumverse.educhip.app.ws.shared.dto.UserDto;
 import com.moniumverse.educhip.app.ws.ui.model.response.ErrorMessages;
+import com.moniumverse.educhip.app.ws.ui.model.response.OperationStatus;
+import com.moniumverse.educhip.app.ws.ui.model.response.RequestOperationStatus;
 
 
 @Service
@@ -35,14 +37,21 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public UserDetails loadUserByUsername(String loginOrEmail) throws UsernameNotFoundException {
-		UserEntity userEntity = userRepository.findByEmail(loginOrEmail);
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		UserEntity userEntity = userRepository.findByEmail(email);
+		
+		OperationStatus returnValue = new OperationStatus();
 
-		if (userEntity == null)
-			throw new UsernameNotFoundException(loginOrEmail);
+		if (userEntity == null) {
+			throw new UsernameNotFoundException(email);
+		} else if(!userEntity.getEmailVerificationStatus()) {
+		//throw new UserServiceException(ErrorMessages.EMAIL_ADDRESS_NOT_VERIFIED.getErrorMessage());
+		}
+			
 
 		//return new User(userEntity.getEmail(), userEntity.getEncryptedPassword(), new ArrayList<>());
-		return new User(userEntity.getEmail(), userEntity.getEncryptedPassword(), userEntity.getEmailVerificationStatus(), true, true, true, new ArrayList<>()); 
+		return new User(userEntity.getEmail(), userEntity.getEncryptedPassword(), userEntity.getEmailVerificationStatus(), true, true, true, new ArrayList<>());
+		
 	}
 
 	@Override
