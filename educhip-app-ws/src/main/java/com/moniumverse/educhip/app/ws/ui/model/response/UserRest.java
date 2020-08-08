@@ -8,11 +8,17 @@ public class UserRest {
 	private String firstName;
 	private String lastName;
 	private String phone;
-	private String age;
+	private String birthday;
 	private String currentEducationDegree;
 	private String applyingEducationDegree;
 	private String whereToStudy;
 	
+	public String getBirthday() {
+		return birthday;
+	}
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
 	public String getUserId() {
 		return userId;
 	}
@@ -48,12 +54,6 @@ public class UserRest {
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
-	}
-	public String getAge() {
-		return age;
-	}
-	public void setAge(String age) {
-		this.age = age;
 	}
 	public String getCurrentEducationDegree() {
 		return currentEducationDegree;

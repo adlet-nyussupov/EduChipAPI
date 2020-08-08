@@ -14,7 +14,7 @@ public class UserDto implements Serializable {
 	private String firstName;
 	private String lastName;
 	private String phone;
-	private String age;
+	private String birthday;
 	private String currentEducationDegree;
 	private String applyingEducationDegree;
 	private String whereToStudy;
@@ -65,12 +65,6 @@ public class UserDto implements Serializable {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public String getAge() {
-		return age;
-	}
-	public void setAge(String age) {
-		this.age = age;
-	}
 	public String getCurrentEducationDegree() {
 		return currentEducationDegree;
 	}
@@ -107,9 +101,11 @@ public class UserDto implements Serializable {
 	public void setEmailVerificationStatus(Boolean emailVerificationStatus) {
 		this.emailVerificationStatus = emailVerificationStatus;
 	}
-	
-	
-	
-	
+	public String getBirthday() {
+		return birthday;
+	}
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
 
 }
