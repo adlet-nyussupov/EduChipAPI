@@ -147,7 +147,7 @@ public class OpportunitiesServiceImpl implements OpportunitiesService {
 			case "Master":
 				MasterOpportunitiesEntity masterOpportunitiesEntity = modelMapper.map(opportunitiesDto,
 						MasterOpportunitiesEntity.class);
-				masterOpportunitiesEntity.setOpportunityId(utils.generateUserId(30));
+				masterOpportunitiesEntity.setOpportunityId(utils.generateId(25));
 				MasterOpportunitiesEntity storedMasterOpportunitiesEntity = masterOpportunitiesRepository
 						.save(masterOpportunitiesEntity);
 				returnValue.add(modelMapper.map(storedMasterOpportunitiesEntity, OpportunitiesDto.class));
@@ -155,6 +155,7 @@ public class OpportunitiesServiceImpl implements OpportunitiesService {
 			case "Doctoral":
 				DoctoralOpportunitiesEntity doctoralOpportunitiesEntity = modelMapper.map(opportunitiesDto,
 						DoctoralOpportunitiesEntity.class);
+				doctoralOpportunitiesEntity.setOpportunityId(utils.generateId(25));
 				DoctoralOpportunitiesEntity storedDoctoralOpportunitiesEntity = doctoralOpportunitiesRepository
 						.save(doctoralOpportunitiesEntity);
 				returnValue.add(modelMapper.map(storedDoctoralOpportunitiesEntity, OpportunitiesDto.class));
@@ -162,6 +163,7 @@ public class OpportunitiesServiceImpl implements OpportunitiesService {
 			case "Associate":
 				AssociateOpportunitiesEntity associateOpportunitiesEntity = modelMapper.map(opportunitiesDto,
 						AssociateOpportunitiesEntity.class);
+				associateOpportunitiesEntity.setOpportunityId(utils.generateId(25));
 				AssociateOpportunitiesEntity storedAssociateOpportunitiesEntity = associateOpportunitiesRepository
 						.save(associateOpportunitiesEntity);
 				returnValue.add(modelMapper.map(storedAssociateOpportunitiesEntity, OpportunitiesDto.class));
@@ -169,6 +171,7 @@ public class OpportunitiesServiceImpl implements OpportunitiesService {
 			case "Bachelor":
 				BachelorOpportunitiesEntity bachelorOpportunitiesEntity = modelMapper.map(opportunitiesDto,
 						BachelorOpportunitiesEntity.class);
+				bachelorOpportunitiesEntity.setOpportunityId(utils.generateId(25));
 				BachelorOpportunitiesEntity storedBachelorOpportunitiesEntity = bachelorOpportunitiesRepository
 						.save(bachelorOpportunitiesEntity);
 				returnValue.add(modelMapper.map(storedBachelorOpportunitiesEntity, OpportunitiesDto.class));

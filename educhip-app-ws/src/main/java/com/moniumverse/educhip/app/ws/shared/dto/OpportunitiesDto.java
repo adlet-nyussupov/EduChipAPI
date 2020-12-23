@@ -11,11 +11,20 @@ public class OpportunitiesDto implements Serializable {
 	private String opportunityType;
 	private String opportunityId;
 	private String opportunityName;
+	private String opportunityCountry;
 	private String opportunityDeadline;
 	private String opportunityDescription;
 	private String opportunityPeriod;
 	private String opportunityImageUrl;
-	private String opportunity_url;
+	private String opportunityUrl;
+
+	public String getOpportunityCountry() {
+		return opportunityCountry;
+	}
+
+	public void setOpportunityCountry(String opportunityCountry) {
+		this.opportunityCountry = opportunityCountry;
+	}
 
 	public String getOpportunityType() {
 		return opportunityType;
@@ -73,14 +82,13 @@ public class OpportunitiesDto implements Serializable {
 		this.opportunityImageUrl = opportunityImageUrl;
 	}
 
-	public String getOpportunity_url() {
-		return opportunity_url;
+	public String getOpportunityUrl() {
+		return opportunityUrl;
 	}
 
-	public void setOpportunity_url(String opportunity_url) {
-		this.opportunity_url = opportunity_url;
+	public void setOpportunityUrl(String opportunityUrl) {
+		this.opportunityUrl = opportunityUrl;
 	}
-	
-	
+
 
 }

@@ -16,6 +16,7 @@ import com.moniumverse.educhip.app.ws.entity.UserEntity;
 import com.moniumverse.educhip.app.ws.exceptions.UserServiceException;
 import com.moniumverse.educhip.app.ws.io.repositories.UserRepository;
 import com.moniumverse.educhip.app.ws.service.UserService;
+import com.moniumverse.educhip.app.ws.shared.AmazonSES;
 import com.moniumverse.educhip.app.ws.shared.Utils;
 import com.moniumverse.educhip.app.ws.shared.dto.UserDto;
 import com.moniumverse.educhip.app.ws.ui.model.response.ErrorMessages;
@@ -34,6 +35,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	@Autowired
+	AmazonSES amazonSES;
 
 
 	@Override
@@ -64,7 +68,7 @@ public class UserServiceImpl implements UserService {
 		ModelMapper modelMapper = new ModelMapper();
 		UserEntity userEntity = modelMapper.map(userDto, UserEntity.class);
 		
-		String publicUserId = utils.generateUserId(30);
+		String publicUserId = utils.generateId(30);
 		userEntity.setUserId(publicUserId);
 		
 		userEntity.setEncryptedPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
@@ -75,6 +79,13 @@ public class UserServiceImpl implements UserService {
 		UserEntity storedUserDetails = userRepository.save(userEntity);
 		
 		UserDto userDtoReturnValue = modelMapper.map(storedUserDetails, UserDto.class);
+		
+		 UserDto returnValue = modelMapper.map(storedUserDetails, UserDto.class);
+		 try {
+		 amazonSES.verifyEmail(returnValue);
+		 } catch (Exception e) {
+			return null;
+		}
 		
 		
 		return userDtoReturnValue;
@@ -94,6 +105,41 @@ public class UserServiceImpl implements UserService {
 		return returnValue;
 
 	}
+	
+	@Override
+	public UserDto getUserById(String userId) {
+
+		UserDto returnValue = new UserDto();
+		ModelMapper modelMapper = new ModelMapper();
+
+		UserEntity userEntity = userRepository.findByUserId(userId);
+
+		if (userEntity == null)
+			throw new UserServiceException(ErrorMessages.NO_RECORD_FOUND.getErrorMessage());
+
+		return modelMapper.map(userEntity, UserDto.class);
+	}
+
+	@Override
+	public boolean verifyEmailToken(String token) {
+		boolean returnValue = false;
+		
+		UserEntity userEntity = userRepository.findByEmailVerificationToken(token);
+		
+		if (userEntity !=null) {
+			boolean hasTokenExpired = utils.hasTokenExpired(token);
+			if (!hasTokenExpired && userEntity.getEmailVerificationStatus().equals(Boolean.FALSE)) {
+				userEntity.setEmailVerificationStatus(null);
+				userEntity.setEmailVerificationStatus(Boolean.TRUE);
+				userRepository.save(userEntity);
+				returnValue = true;
+			}
+		}
+
+		return returnValue;
+	}
+	
+	
 	
 	
 

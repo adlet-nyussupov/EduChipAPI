@@ -8,6 +8,7 @@ public interface UserService extends UserDetailsService {
 	
 	public UserDto createUser(UserDto userDto);
 	public UserDto getUser(String email);
-	
+	public UserDto getUserById(String userId);
+	boolean verifyEmailToken(String token);
 		
 }

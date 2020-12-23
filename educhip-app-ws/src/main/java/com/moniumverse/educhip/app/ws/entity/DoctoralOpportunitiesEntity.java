@@ -16,26 +16,29 @@ public class DoctoralOpportunitiesEntity implements Serializable {
 	@GeneratedValue
 	private long id;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 50)
 	private String opportunityId;
 
-	@Column(nullable = false, length = 50)
+	@Column(nullable = false, length = 100)
 	private String opportunityName;
+	
+	@Column(nullable = false, length = 100)
+	private String opportunityCountry;
 
-	@Column(nullable = false, length = 30)
+	@Column(nullable = false, length = 100)
 	private String opportunityDeadline;
 
-	@Column(nullable = false, length = 120)
+	@Column(nullable = false, length = 3000)
 	private String opportunityDescription;
 
-	@Column(nullable = false, length = 30)
+	@Column(nullable = false, length = 100)
 	private String opportunityPeriod;
 
-	@Column(nullable = false, length = 80)
+	@Column(nullable = false, length = 300)
 	private String opportunityImageUrl;
 
-	@Column(nullable = false, length = 80)
-	private String opportunity_url;
+	@Column(nullable = false, length = 300)
+	private String opportunityUrl;
 
 	public long getId() {
 		return id;
@@ -55,6 +58,14 @@ public class DoctoralOpportunitiesEntity implements Serializable {
 
 	public String getOpportunityName() {
 		return opportunityName;
+	}
+
+	public String getOpportunityCountry() {
+		return opportunityCountry;
+	}
+
+	public void setOpportunityCountry(String opportunityCountry) {
+		this.opportunityCountry = opportunityCountry;
 	}
 
 	public void setOpportunityName(String opportunityName) {
@@ -93,11 +104,11 @@ public class DoctoralOpportunitiesEntity implements Serializable {
 		this.opportunityImageUrl = opportunityImageUrl;
 	}
 
-	public String getOpportunity_url() {
-		return opportunity_url;
+	public String getOpportunityUrl() {
+		return opportunityUrl;
 	}
 
-	public void setOpportunity_url(String opportunity_url) {
-		this.opportunity_url = opportunity_url;
+	public void setOpportunityUrl(String opportunityUrl) {
+		this.opportunityUrl = opportunityUrl;
 	}
 }

@@ -32,7 +32,7 @@ public class OpportunitiesController {
 	@Autowired
 	OpportunitiesService opportunitiesService;
 
-	@GetMapping(path = "/{id}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+	@GetMapping(path = "/{id}", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public List<OpportunitiesResponse> getUsers(@RequestParam(value = "page", defaultValue = "0") int page,
 			@RequestParam(value = "limit", defaultValue = "2") int limit, @PathVariable String id) {
 
